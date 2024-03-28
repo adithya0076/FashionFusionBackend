@@ -29,12 +29,12 @@ class ItemViewSet(viewsets.ModelViewSet, BaseView):
         if category:
             queryset = queryset.filter(category=category)
         serializer = self.get_serializer(queryset, many=True)
-        data = {
+      
+        return JsonResponse({
             'data': serializer.data,
             'success': True,
             'message': 'Data retrieved successfully'
-        }, 
-        return JsonResponse(data=data, status=status.HTTP_200_OK, safe=False)
+        }, status=status.HTTP_200_OK, safe=False)
     
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
